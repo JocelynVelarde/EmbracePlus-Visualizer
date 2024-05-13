@@ -1,9 +1,9 @@
 import requests
-
+from key import konbert_api_key
 import os
 
 # API key is obtained here after creating an account: https://konbert.com/account 
-api_key = "qfee9cc57025de3e2d13665d3d919ce5"
+api_key = konbert_api_key
 api_endpoint = "https://konbert.com/api/v1/convert"
 
 headers = {
