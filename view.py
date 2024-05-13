@@ -1,5 +1,5 @@
 import requests
-from key import konbert_api_key
+from keyk import konbert_api_key
 import os
 
 # API key is obtained here after creating an account: https://konbert.com/account 
