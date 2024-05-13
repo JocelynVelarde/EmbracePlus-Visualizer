@@ -11,6 +11,7 @@ def convert_files(uploaded_files):
     combined_bvp = pd.DataFrame()
 
     for file in uploaded_files:
+        st.write(file.name)
         reader = fastavro.reader(file)
         records = [r for r in reader]
         df = pd.DataFrame.from_records(records)
@@ -23,7 +24,7 @@ def convert_files(uploaded_files):
             bvp = df['rawData'].apply(json.loads).apply(lambda x: x['bvp']).apply(pd.Series)
         combined_eda = combined_eda.append(eda, ignore_index=True)
         combined_bvp = combined_bvp.append(bvp, ignore_index=True)
-
+    st.write(uploaded_files)
       
     combined_eda = combined_eda.sort_values('timestampStart')
     combined_eda = combined_eda.explode('values')
