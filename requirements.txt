@@ -1,5 +1,4 @@
 pandas
 fastavro
-json
 numpy
 matplotlib
