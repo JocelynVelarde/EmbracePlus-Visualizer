@@ -49,7 +49,7 @@ Deployed with: Streamlit Cloud
 
 ## Demo
 
-[YouTube](https://www.youtube.com/watch?v=yHeFV8sdVzY)
+
 
 
 ## License
