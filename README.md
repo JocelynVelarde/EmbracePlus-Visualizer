@@ -3,7 +3,7 @@
 
 Currently there is no tool available that allows users from the EmbracePlus bracelet to visualize their data automatically. For this I developed an online visualizer for .avro format files, where graphs are generated to view participants data sets. 
 
-<img src="assets/example.png" alt="graph example" width="500" height="500">
+<img src="assets/example.png" alt="graph example" width="650" height="500">
 
 ## Authors
 
