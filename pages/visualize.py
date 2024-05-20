@@ -104,15 +104,10 @@ st.set_page_config(
 
 st.title("Upload your .avro files here to visualize them 🔍")
 
+
+
 uploaded_files = st.file_uploader("Upload Files", type="avro", accept_multiple_files=True)
 visualize_files = st.button("Upload Files")
-
-if visualize_files and uploaded_files:
-    st.success("Files uploaded successfully, visualizing...")
-    dataframes = convert_files(uploaded_files)
-
-else:
-    st.warning("Please upload files to visualize")
 
 st.title("Time Converter for EDA")
 timeCalculate = st.number_input("Enter the time you want to convert in minutes")
@@ -125,6 +120,15 @@ timeCalculateBVP = st.number_input("Enter the time you want to convert in minute
 timeCalculateBVP = timeCalculateBVP / 64
 timeCalculateBVP = timeCalculateBVP / 60
 st.write("The time in minutes is: ", timeCalculateBVP)
+
+if visualize_files and uploaded_files:
+    st.success("Files uploaded successfully, visualizing...")
+    dataframes = convert_files(uploaded_files)
+
+else:
+    st.warning("Please upload files to visualize")
+
+
 
 st.divider()
 
