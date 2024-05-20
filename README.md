@@ -3,7 +3,7 @@
 
 Currently there is no tool available that allows users from the EmbracePlus bracelet to visualize their data automatically. For this I developed an online visualizer for .avro format files, where graphs are generated to view participants data sets. 
 
-<img src="assets/example.png" alt="graph example" width="500" height="500">
+<img src="assets/example.png" alt="graph example" width="350" height="190">
 
 ## Authors
 
@@ -43,9 +43,13 @@ streamlit_app
 
 Deployed with: Streamlit Cloud
 
+## Try it
+
+[Try it here](https://embraceplusview.streamlit.app/)
+
 ## Demo
 
-[YouTube](https://www.youtube.com/watch?v=yHeFV8sdVzY)
+
 
 
 ## License
