@@ -11,7 +11,6 @@ def convert_files(uploaded_files):
     combined_bvp = pd.DataFrame()
 
     for file in uploaded_files:
-        st.write(file.name)
         reader = fastavro.reader(file)
         records = [r for r in reader]
         df = pd.DataFrame.from_records(records)
@@ -43,7 +42,7 @@ def convert_files(uploaded_files):
         time = np.arange(0, 1/row['samplingFrequency'], 1/row['samplingFrequency'])
         time += accumulated_time_eda
         accumulated_time_eda = time[-1]
-        time_data_eda.extend(time)
+        time_data_eda.extend(time/4)
         eda_data.append(values)
 
     for _, row in combined_bvp.iterrows():
@@ -67,10 +66,14 @@ def convert_files(uploaded_files):
     st.title("EDA Data")
     st.divider()
     st.line_chart(data_eda)
+    st.caption("To obtain the data in minutes, divide the x-axis by 4 and then by 60.")
+    st.caption("For example: 14,000 / 4 = 3,500 and 3,500 / 60 = 58.33 minutes")
 
     st.title("BVP Data")
     st.divider()
     st.line_chart(data_bvp)
+    st.caption("To obtain the data in minutes, divide the x-axis by 64 and then by 60.")
+    st.caption("For example 240,000 / 64 = 3,750 and 3,750 / 60 = 62.5 minutes")
 
     st.title("Dataframe download")
     st.write("EDA Data")
