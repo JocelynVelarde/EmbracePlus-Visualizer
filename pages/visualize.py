@@ -10,6 +10,9 @@ def convert_files(uploaded_files):
     combined_eda = pd.DataFrame()
     combined_bvp = pd.DataFrame()
 
+    eda_frames = []
+    bvp_frames = []
+
     for file in uploaded_files:
         reader = fastavro.reader(file)
         records = [r for r in reader]
@@ -21,9 +24,12 @@ def convert_files(uploaded_files):
         else:
             eda = df['rawData'].apply(json.loads).apply(lambda x: x['eda']).apply(pd.Series)
             bvp = df['rawData'].apply(json.loads).apply(lambda x: x['bvp']).apply(pd.Series)
-        combined_eda = combined_eda.append(eda, ignore_index=True)
-        combined_bvp = combined_bvp.append(bvp, ignore_index=True)
-    st.write(uploaded_files)
+        eda_frames.append(eda)
+        bvp_frames.append(bvp)
+
+    combined_eda = pd.concat(eda_frames, ignore_index=True)
+    combined_bvp = pd.concat(bvp_frames, ignore_index=True)
+    st.write(uploaded_files)    
       
     combined_eda = combined_eda.sort_values('timestampStart')
     combined_eda = combined_eda.explode('values')
@@ -42,7 +48,7 @@ def convert_files(uploaded_files):
         time = np.arange(0, 1/row['samplingFrequency'], 1/row['samplingFrequency'])
         time += accumulated_time_eda
         accumulated_time_eda = time[-1]
-        time_data_eda.extend(time/4)
+        time_data_eda.extend(time)
         eda_data.append(values)
 
     for _, row in combined_bvp.iterrows():
@@ -57,6 +63,8 @@ def convert_files(uploaded_files):
         'Time': time_data_eda,
         'EDA': eda_data
     })
+
+    
 
     data_bvp = pd.DataFrame({
         'Time': time_data_bvp,
@@ -81,6 +89,8 @@ def convert_files(uploaded_files):
     st.divider()
     st.write("BVP Data")
     st.write(combined_bvp)
+
+    
     
     return dataframes
 
@@ -104,6 +114,17 @@ if visualize_files and uploaded_files:
 else:
     st.warning("Please upload files to visualize")
 
+st.title("Time Converter for EDA")
+timeCalculate = st.number_input("Enter the time you want to convert in minutes")
+timeCalculate = timeCalculate / 4
+timeCalculate = timeCalculate / 60
+st.write("The time in minutes is: ", timeCalculate)
+
+st.title("Time Converter for BVP")
+timeCalculateBVP = st.number_input("Enter the time you want to convert in minutes", key="bvp")
+timeCalculateBVP = timeCalculateBVP / 64
+timeCalculateBVP = timeCalculateBVP / 60
+st.write("The time in minutes is: ", timeCalculateBVP)
 
 st.divider()
 
