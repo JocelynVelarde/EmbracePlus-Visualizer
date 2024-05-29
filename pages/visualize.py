@@ -70,6 +70,12 @@ def convert_files(uploaded_files):
         'Time': time_data_bvp,
         'BVP': bvp_data
     })
+  
+    st.title("EDA Data Filtered")
+    data_index = data_eda.iloc[2160:9361]
+    st.line_chart(data_index)
+    st.caption("EDA Data filtered from 2160 to 9361")
+
 
     st.title("EDA Data")
     st.divider()
