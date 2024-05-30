@@ -99,6 +99,20 @@ def convert_files(uploaded_files):
     st.divider()
     st.write("BVP Data")
     st.write(combined_bvp)
+    # Calculate the midpoint of the DataFrame
+    midpoint = len(combined_bvp) // 2
+
+# Split the DataFrame into two halves
+    combined_bvp_first_half = combined_bvp.iloc[:midpoint]
+    combined_bvp_second_half = combined_bvp.iloc[midpoint:]
+
+    # Write the first half
+    st.write("BVP Data - First Half")
+    st.write(combined_bvp_first_half)
+
+    # Write the second half
+    st.write("BVP Data - Second Half")
+    st.write(combined_bvp_second_half)
 
     
     
