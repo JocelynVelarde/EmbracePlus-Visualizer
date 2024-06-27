@@ -23,8 +23,15 @@ container = st.container(border=True)
 st.caption("Note: This is an example of a graph that will be generated after uploading the files. The actual graph will be based on the data in your files.")
 container.image("assets/example.png", use_column_width=True)
 
+st.divider()
+
+st.header("Example to download data as .csv")
+st.caption("It is necessary for you to hover at the top of the table for the buttons to appear as shown in the image below.")
+container1 = st.container(border=True)
+container1.image("assets/download.png", use_column_width=True)
 
 st.divider()
+
 
 st.page_link("pages/visualize.py", label="Click this button to start uploading", icon="📁")
 
