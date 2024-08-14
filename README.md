@@ -1,5 +1,6 @@
 
 # .avro data visualizer for EmbracePlus from Empatica 📈
+Visualize your raw data from .avro files for the EmbracePlus device from Empatica.
 
 Currently there is no tool available that allows users from the EmbracePlus bracelet to visualize their data automatically. For this I developed an online visualizer for .avro format files, where graphs are generated to view participants data sets. 
 
